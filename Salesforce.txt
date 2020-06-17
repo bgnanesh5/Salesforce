@@ -1,0 +1,475 @@
+1. Salesforce CRM Administration
+  - creation of objects, profiles, roles, validations.....
+
+2. Salesforce CRM Development
+  - Apex, Visualforce pages, Test classes...
+
+CRM:
+===
+. CRM stand for "Customer Relationhips Management" and it's software 
+  that stores customer contact information like names, addresses, and phone numbers,
+  as well as keeps track of customer activity like website visits, phone calls, email and more.
+
+What CRM does:
+==============
+- Contact, lead adn opportunity management.
+- Deal Tracking
+- Product Planning, manufacturing planning and shipping.
+
+What is Salesforce CRM?
+=======================
+It is the world's # 1 CRM platform. Their cloud-based applications for sales, service,
+marketing, and more donot require IT experts to set up or manage simply log in and
+start connecting to customers in a whole new way.
+
+cloud computing- salesforce
+- sales - marking - accounts - leads - opportunities - servicing ..
+
+How salesforce CRM is dirrerent from Legacy CRM:
+================================================
+
+Legacy platform (6-12 months)
+-----------------------------
+Idea -- buy H/W & setup -- Installing S/W -- difining user access -- 
+setup reporting and analutics -- building security -- building app
+
+salesforce platform (days or weeks)
+-----------------------------------
+
+Idea -- salesforce -- connect desktop and mobile device to salesforce
+
+Services Nature of Salesforce:
+------------------------------
+- Salesforce as SaaS: Software as a service
+  No installations, setup or download required. Log in and use software across the cloud.
+
+- Salesforce as PaaS: Platform as a service.
+ No separate platform required. Develop and code on salesforce platform to create and deploy applications.
+
+- Salesforce as Iaas: Infrastructure as a service
+ No hardware or installations required. All your data and applications are stored and secure on salesforce cloud.
+
+Salesforce Architecture:
+========================
+- Multi-Tenant architecture:
+----------------------------
+single instance of software for all tenants
+	|
+Economical
+	|
+Data by all stored in single database schema.
+	|
+Provider updates one application to make changes across all users.
+
+- Metadata Architecture:
+------------------------
+polymorphic 	-  web browser		Metadata driven
+application				development model
+     |
+	Runtime Engine				|
+     |
+Tenant specigic meta data		Increases developers
+Common metadata				productivity
+data						|
+
+					Security for user data
+Shared Database
+     
+
+Services Offered By Salesforce:
+==============================
+sales cloud - service cloud - Exact Target maret cloud - AppExchabge....
+				|
+			Salesforce1 App
+				|
+		   Salesforce1 platform API
+				|
+	      Forece.com - Heroku - Exact Target FUEL
+		  salesforce1 platform services
+	
+		Social - Mobile - Analytics - Cloud 
+
+
+Organisations in Salesforce:
+============================
+. Production - where the client organisation actually works real-time. live, Deployment, original data.
+    login.salesforce.com  or  developer.salesforce.com
+
+. SandBox - Copy of production. sample data
+	Test.salesforce.com
+
+. UAT - User Acceptancy Test. Preproduction
+
+
+2. How to create Applications, Objects, Tabs and Fields:
+========================================================
+. Application - in salesforce is a workspace where the user works.
+Eg. Sales executive user works in Sales Application (Sales Cloud)
+
+. Object - An object i salesforce is the data table in salesforce database which stores a users data
+Eg. Account object sotres record of clients account details.
+
+. Tab - is the user interface between application and object. It is required 
+  so user can interact with the object to store records.
+
+
+Application, Tabs & Objects:
+----------------------------
+
+Front end			interface		slaesforceDB
+---------			---------		------------
+user:Browser			Tabs			objects
+
+  Application			Tab1			object1
+      |				Tab2			object2
+Tabs - T1,T2,T3------		Tab3---------		object3
+
+OBJECT:
+------
+- Object Structure:
+
+EmpId   EmpName   Salary   Email 		 Domain    -------> object
+1        Logan    50000    lmn@gmail.com         Sales     --------> Record
+          |
+  	 Filed Value
+
+
+API objects represent database tables that contain your organization's information
+
+
+How to create Custom Application:
+--------------------------------
+. Navigations:
+. Setup - Build - Create - apps - New app 
+
+
+How to Create A Custom Object and Insert Fields:
+------------------------------------------------
+. Create a custom object named "students"
+
+. Should contain following fields.
+1. Name
+2. Father's Name
+3. Phone
+
+How to Create a Custom Object:
+-----------------------------
+. Navigations:
+. setup - Build - create - object - new custom object
+
+How to create a Tab:
+--------------------
+. Create a tab for student Object.
+. Navigations:
+. Setup - Build - Create - Tabs - new tab for custom object
+
+
+3. Lookup & Master-Detail Relationships, Rollups:
+=================================================
+Lookup Relationship:
+--------------------
+. One to Many Relationship (1 parent - n Children)
+. Lookup relation is created on child object.
+
+		parent
+		Account
+		  |     
+            Lookup relation		
+             /            \
+child-Opportunities      Cases-child
+
+USECASES:
+--------
+1. standard object and standard object: Account(p)<-Contacts(c)
+2. standard object and custom object: Account(p)<-Employee(c)
+3. custom object and custom object: project(p)<-Employee(c)
+
+. Lookup always been created in child object
+
+Navigations:
+case1:
+ setup -> Build -> Customize -> Contacts -> Fields
+case2:
+ setup -> Build -> Create -> Objects -> Employee
+
+Lookup Relationship:
+-------------------
+. Many to Many:
+---------------
+  Projects <--------X-----------> Employees
+   Parent			 parent
+
+A Project can have many employees working on it.
+An Employee works on Many projects
+
+Projects <------- Assignment -------> Employees
+Parent		Junction Object       parent
+
+
+Junction Object:
+----------------
+Parent 		    Child		    Parent
+Projects <------- Assignment ------------> Employees
+		Junction Object
+		Custom object does not require a Tab
+
+Master Detail Relationship:
+---------------------------
+. All Child objects must have a parent
+	Master
+	  |
+	Child
+1. When no records present in child object
+2. When records are present in child object
+
+Rollup Summary in Parent Record:
+--------------------------------
+. A roll up summary gives count of children or various values such as min, max, 
+  aggregare, etc to its parent record.
+
+		parent	Rollup: 
+			children count = 4
+  Child1	Child1		Child1		Child1
+
+- Roll up always create in Parent
+
+
+4. Security Model Part1: Profiles, Roles & Users:
+=================================================
+Introduction:
+-------------
+. In our salesforce Org we must ensure security on the following layers - 
+ 
+ 1. Object Level
+ 2. Field Level
+ 3. Record Level
+
+To achieve this salesforce provides a comprehensive and flexible data security model
+to secure data at different levels.
+
+Levels of Access:
+----------------
+Org Access - maintain a list of aurthorized users, set password policies,
+             and limit logins to certain hours and locations
+
+Object Access - By setting permissions on a particular type of object.
+ 		you can prevent a group of users from creating, viewing,
+ 	 	editing, or deleting any records of that object.
+
+Record Access - You can allow particular users to view an object, but 
+		then testrict the individual object records they are allowed to see.
+
+Field Access - You can restrict access to certain fields, even if a user has
+  	       access to the object.
+
+Contents is Security Model:
+--------------------------
+. Profiles	. Permission Sets
+. Roles		. OWD (Org. wide default)
+. Sharing Rules . Manual Sharing
+
+- Baseline Object permissions (profile, permissions sets)
+
+Profiles:
+=========
+"Profiles define how users access objects and data, and what they can do within
+the application. When you create users, you assign a profile to each one."
+
+What profiles do?
+----------------
+. A profile determines which Apps, Tabs and Objects a user can access.
+. It determines how the information is displayed to the user (page layouts,
+  record types, field-level security).
+. It determins the permissions a user has on each object's Records (Create, Read,
+  Edit, Delete view all and modify all, and many other permissions)
+
+Creating A Custom Profile:
+-------------------------
+. Log into your free salesforce Developer Account.
+. Navigations:
+	setup --> Administer --> Manage Users --> Profiles
+
+Roles:
+======
+"Salesforce offers a user role hierarchy that you can use to determine the levels of 
+access that users have to your salesforce org's data. Role within the hierarchy
+affect access on key components as records and reports"
+
+What Role Hierarchy does?
+-------------------------
+. It provides vertical access
+. Role hierarchy is a way to extend access to records when the OWD is set to anything
+  more restrictive than "Public Read Write"
+. Note - If OWD is "Public Read Write", Role is redundant as this would mean 
+  every user has access to every other User's Data.
+
+Create A Custom Role:
+---------------------
+. Log into your free salesforce developer account
+. Navigarions:
+	setup -> Administer -> Manage Users -> Roles
+
+Creating New Users:
+==================
+. Log into your free salesforce developer account
+. Navigarions:
+	setup -> Administer -> Manage Users -> Users
+
+5. Security Model Part 2: Permission Sets, FLS & OWD:
+=====================================================
+Permission Sets:
+----------------
+"A permission set is a collection of settings and permissions that gives users
+access to various tools and functions."
+
+What permission sets Do?
+------------------------
+. Provides additional permissions and settings a user requires than 
+  what his profile permits.
+. The settings adn permissions in permission sets are also found in profiles,
+  but permissions sets extend user's functional access without changing their profiles.
+. This gives an Administrator the ability to give additional permissions to 
+  a user without having to create multiple profiles.
+
+Creating a Permission Set:
+--------------------------
+. Log into your free salesforce developer account
+. Navigarions:
+	setup -> Administer -> Manage Users -> Permission Sets.
+				-> Object settings
+
+FLS(Field Level Security):
+-------------------------
+. Field Level Security (and page layouts) determine which fileds a user
+  with a specific profile can see.
+
+Setting Field Level Security:
+-----------------------------
+. Log into your free salesforce developer account
+. Navigarions:
+ setup -> Standard object -> Field -> Set-Field level security
+ setup -> object -> custom object -> field -> set-field level security
+ setup -> profile -> (faculty) -> edit
+
+OWD (Organization-wide defaults):
+--------------------------------
+Defines the default access level for an object's records.
+
+. Private
+. Public Read Only
+. Public Read/Write
+. Controlled by Parent
+
+Editing OWD:
+-----------
+. Log into your free salesforce developer account
+. Navigarions:
+   setup -> Administer -> Security Controls -> Sharing Settings -> OWD -> Edit
+	
+6. Security Model Part 3: Sharing Rules & Manual Sharing:
+=========================================================
+- Sharing rules are lateral access
+- Manual Sharing rules are flexible
+
+Sharing Rules:
+--------------
+"A sharing rule is used to extend sharing access to users in public groups, roles, 
+or territories."
+
+. Sharing Rule  can not be stricter than OWD.
+. Can be used when OWD is more restrictive than public Read/Write
+
+Which Records can be shared?
+-----
+. Owned By certain users
+. Meeting certain criteria
+
+With Which users?
+-----
+. Public Groups
+. Roles
+. Roles and Subordinates
+
+What level of sharing access?
+--------
+. Read Only
+. Read Write
+
+- To share the details with India and USA 
+
+Creating a Sharing Rule:
+------------------------
+. Log into your free salesforce developer account
+. Navigarions:
+   setup -> Administer -> Security Controls -> Sharing Settings 
+
+Manual Sharing:
+--------------
+"Enable or prevent users from sharing their own user records with other users
+across the organization"
+
+. Allows user to share record with even a single user.
+. Gives control to the user to decide sharing access, not just the administrator.
+
+Enabling Manual Sharing:
+------------------------
+. Log into your free salesforce developer account
+. Navigarions:
+ Object Tab(eg. Account) -> Open Record you wish to share -> Record Detail
+ page click 'Sharing' Buttoon -> add - users you wish to share record with.
+
+7. Business Model part 1: Formula Fields & Validation Rules:
+============================================================
+Business logic contents:
+------------------------
+. Formula Fields	. Validation Rules
+. Workflows		. Approval process
+
+Formula Fields:
+---------------
+"A Formula field computes its value from other fields, expressions, or values."
+
+. Formula can automatically calculate the value of a field based on their fields.
+. It can perform multiple operations like Mathematical operations,
+  Logical operations, Date-Time etc.,
+. The output value of a formula can be of following data types - Checkbox,
+  Number, Currency, Date and Time, Text, Time.
+. Formula fields are Read only Fields.
+
+Creating Formula Field:
+----------------------
+. Log into your free salesforce developer account
+. Navigarions:
+ setup -> select object (custom or standard) -> custom fields and relationships ->
+ Formula
+
+Validation Rules:
+-----------------
+"Validation rules verify that the data a user enters in a record meets the 
+standards you specify before the user can save the record."
+
+. A validation rule can contain a formula or expression that evaluates
+  the data on on object fields to returns a value of "True" or "False"
+. Validation rules includes error message to display to the user when the rule
+  returns a value of "True" due to an invalid value.
+
+
+Click	    Evaluate
+Save on --> Formula/  ---> True --> Display Error
+Record	    Expression      |False
+             		Save Record
+
+Creating Validation Rule:
+-------------------------
+. Log into your free salesforce developer account
+. Navigarions:
+ setup -> select object (custom or standard) -> Validtion Rules -> Active
+
+
+
+
+
+
+
+
+
